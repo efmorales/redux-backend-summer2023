@@ -9,7 +9,7 @@ const cors = require('cors');
 require('dotenv').config();
 const mongoose = require ('mongoose');
 
-const mongooseOptions = {dbName: 'login-context'};
+const mongooseOptions = {dbName: 'redux-backend'};
 mongoose.connect(process.env.MONGODB_URI, mongooseOptions)
   .then (() => console.log('MongoDB connected!'))
   .catch ((error) => console.log(error))

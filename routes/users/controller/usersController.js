@@ -11,7 +11,7 @@ module.exports = {
 
             // check if user exists / get the user from DB
 
-            let foundUser = await User.findOne({username:req.body.username})
+            let foundUser = await User.findOne({email:req.body.email})
 
             if (!foundUser) {
                 throw {
@@ -33,13 +33,13 @@ module.exports = {
 
             let payload = {
                 id: foundUser._id,
-                username: foundUser.username
+                email: foundUser.email
             }
 
             let token = await jwt.sign(payload, process.env.JWT_KEY,{expiresIn: 60*60});
 
             res.status(200).json({
-                username: req.body.username,
+                email: req.body.email,
                 password: req.body.password,
                 message: "Successful Login!!",
                 token: token
@@ -53,7 +53,7 @@ module.exports = {
         try {
             console.log(req.body);
 
-            let foundUser = await User.findOne({username:req.body.username});
+            let foundUser = await User.findOne({email:req.body.email});
 
             if (foundUser) {
                 throw {
@@ -73,7 +73,7 @@ module.exports = {
 
             res.status(200).json({
                 userObj: savedUser,
-                message: `succesfully registered ${savedUser.username}`,
+                message: `succesfully registered ${savedUser.email}`,
             })
         }
         catch (e) {
@@ -90,7 +90,7 @@ module.exports = {
         // let token = await jwt.sign(payload, process.env.JWT_KEY,{expiresIn: 60*60});
 
         res.status(200).json({
-            username: foundUser.username,
+            email: foundUser.email,
             message: 'succesful login',
         });
         
@@ -116,7 +116,7 @@ module.exports = {
 
 // const login = (req, res) => {
 //     return {
-//         username: req.body.username
+//         email: req.body.email
 //     }
 // }
 //

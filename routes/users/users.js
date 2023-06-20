@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
 router.get('/login-test', function (req, res) {
   console.log(req.body)
   res.send({
-    username: req.body.username
+    email: req.body.email
   })
 })
 
